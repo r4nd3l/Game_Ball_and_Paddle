@@ -7,7 +7,7 @@ var ballSpeedY = 4;
 
 var player1Score = 0;
 var player2Score = 0;
-const WINNING_SCORE = 3;
+const WINNING_SCORE = 10000;
 
 var showingWinScreen = false;
 
@@ -15,6 +15,8 @@ var paddle1Y = 250;
 var paddle2Y = 250;
 const PADDLE_THICKNESS = 10;
 const PADDLE_HEIGHT = 100;
+
+var src = document.getElementById("gameCanvas");
 
 function calculateMousePos(evt){
   var rect = canvas.getBoundingClientRect();
@@ -36,12 +38,12 @@ function handleMouseClick(evt){
 }
 
 window.onload = function(){
-  console.log("Hola");
+  console.log("Game is started");
 
   canvas = document.getElementById('gameCanvas');
   canvasContext = canvas.getContext('2d');
 
-  var framesPerSecond = 30;
+  var framesPerSecond = 60;
   setInterval(function(){
         moveEverything();
         drawEverything();
@@ -77,6 +79,7 @@ function computerMovement(){
 }
 
 function moveEverything(){
+  src.style.cssText = "cursor: ns-resize; border-top: 5px solid white; border-bottom: 5px solid white";
   if(showingWinScreen){
     return;
   }
@@ -127,21 +130,25 @@ function drawEverything(){
   colorRect(0,0,canvas.width,canvas.height,'black');
 
   if(showingWinScreen){
+    src.style.cssText = "cursor: pointer; border-top: 5px solid black; border-bottom: 5px solid black";
     canvasContext.fillStyle = 'white';
 
     if(player1Score >= WINNING_SCORE){
-      canvasContext.fillText("Left Player Won!", 400, 200);
+      canvasContext.font = "35px retro_computer_personal_use";
+      canvasContext.fillText("Left Player Won!", canvas.width/2, 200);
     }else if(player2Score >= WINNING_SCORE){
-      canvasContext.fillText("Right Player Won!", 400, 200);
+      canvasContext.font = "35px retro_computer_personal_use";
+      canvasContext.fillText("Right Player Won!", canvas.width/2, 200);
     }
-
-    canvasContext.fillText("Click to continue", 400, 500);
+    canvasContext.font = "20px retro_computer_personal_use";
+    canvasContext.fillText("Click to continue", canvas.width/2, 500);
     return;
   }
 
   drawNet()
 
   // this is left player paddle
+  // colorRect(X-axis, Y-size, X-size, Y-axis)
   colorRect(0,paddle1Y,PADDLE_THICKNESS,PADDLE_HEIGHT,'white');
 
   // this is right player paddle
@@ -150,8 +157,10 @@ function drawEverything(){
   // next line draws the ball
   colorCircle(ballX, ballY, 10, 'white');
 
-  canvasContext.fillText(player1Score, 100, 100);
-  canvasContext.fillText(player2Score, canvas.width-100, 100);
+  canvasContext.font = "30px retro_computer_personal_use";
+  canvasContext.textAlign = "center";
+  canvasContext.fillText(player1Score, (canvas.width/2)/2, (canvas.height/2)/2);
+  canvasContext.fillText(player2Score, (canvas.width/2) + (canvas.width/2)/2, (canvas.height/2)/2);
 }
 
 function colorCircle(centerX, centerY, radius, drawColor){
