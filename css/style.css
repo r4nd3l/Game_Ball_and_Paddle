@@ -6,15 +6,6 @@
     src: url('../font/retro_computer_personal_use.ttf'); /*URL to font*/
 }
 
-@font-face {
-  font-family: "Roboto";
-  src:url("../fonts/Roboto/roboto.eot");
-  src:url("../fonts/Roboto/roboto.eot?#iefix") format("embedded-opentype"),
-    url("../fonts/Roboto/roboto.svg#line-icons") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
 :root{
   --dc-: #28a745; /* #28a745 */
   --rgba-dc-: rgba(40, 167, 69, 0.5);
@@ -41,6 +32,8 @@ html {
   background: radial-gradient(ellipse at bottom, #1b2735 0%,#090a0f 100%);
 }
 body{
+  overflow-y: scroll;
+  height: 100vh;
   margin: 0;
   padding: 0;
 }

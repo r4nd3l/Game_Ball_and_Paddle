@@ -82,7 +82,7 @@ function computerMovement(){
 }
 
 function moveEverything(){
-  src.style.cssText = "cursor: ns-resize; border-top: 5px solid white; border-bottom: 5px solid white";
+  src.style.cssText = "cursor: ns-resize; border-top: 5px solid white; border-bottom: 5px solid white;";
   if(showingWinScreen){
     return;
   }
@@ -151,8 +151,9 @@ function drawEverything(){
       canvasContext.font = "45px retro_computer_personal_use";
       canvasContext.fillText("Computer Won!", canvas.width/2, canvas.height/2);
     }
+
     canvasContext.font = "20px retro_computer_personal_use";
-    canvasContext.fillText("Click to continue", canvas.width/2, 500);
+    canvasContext.fillText("Click to continue", canvas.width/2, (canvas.height/2) + (canvas.height/2)/2);
     return;
   }
 
